@@ -120,7 +120,7 @@ def main():
 
     try:
         github_conn = github.Github(module.params.get("token"),
-            base_url=module.params["github_url"])
+                                    base_url=module.params["github_url"])
     except github.GithubException as err:
         module.fail_json(msg="Could not connect to GitHub at %s: %s" % (
             module.params["github_url"], to_native(err)))

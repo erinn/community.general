@@ -186,28 +186,28 @@ def update_hook(repo, hook, module):
 
 def main():
     module = AnsibleModule(
-      argument_spec=dict(
-          repository=dict(type='str', required=True, aliases=['repo']),
-          url=dict(type='str', required=True),
-          content_type=dict(
-              type='str',
-              choices=('json', 'form'),
-              required=False,
-              default='form'),
-          secret=dict(type='str', required=False, no_log=True),
-          insecure_ssl=dict(type='bool', required=False, default=False),
-          events=dict(type='list', elements='str', required=False),
-          active=dict(type='bool', required=False, default=True),
-          state=dict(
-              type='str',
-              required=False,
-              choices=('absent', 'present'),
-              default='present'),
-          token=dict(type='str', required=True, no_log=True),
-          github_url=dict(type='str', required=False, default="https://api.github.com"),
-      ),
-      required_if=[("state", "present", ["events"])]
-    )
+                            argument_spec=dict(
+                                repository=dict(type='str', required=True, aliases=['repo']),
+                                url=dict(type='str', required=True),
+                                content_type=dict(
+                                    type='str',
+                                    choices=('json', 'form'),
+                                    required=False,
+                                    default='form'),
+                                secret=dict(type='str', required=False, no_log=True),
+                                insecure_ssl=dict(type='bool', required=False, default=False),
+                                events=dict(type='list', elements='str', required=False),
+                                active=dict(type='bool', required=False, default=True),
+                                state=dict(
+                                    type='str',
+                                    required=False,
+                                    choices=('absent', 'present'),
+                                    default='present'),
+                                token=dict(type='str', required=True, no_log=True),
+                                github_url=dict(type='str', required=False, default="https://api.github.com"),
+                            ),
+                            required_if=[("state", "present", ["events"])]
+                          )
 
     if not HAS_GITHUB:
         module.fail_json(msg=missing_required_lib('PyGithub'),

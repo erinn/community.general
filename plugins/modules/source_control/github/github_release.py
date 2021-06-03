@@ -173,8 +173,7 @@ def main():
             gh_obj.me()
     except github3.exceptions.AuthenticationFailed as e:
         module.fail_json(msg='Failed to connect to GitHub: %s' % to_native(e),
-                         details="Please check username and password or token "
-                                 "for repository %s" % repo)
+                         details="Please the token for repository %s" % repo)
 
     repository = gh_obj.repository(user, repo)
 
